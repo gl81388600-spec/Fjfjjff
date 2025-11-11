@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Persona Premium: Carlos Morales</title>
+    <!-- Carga de Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de fuentes Google: Montserrat (para títulos), Open Sans (para texto) --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Iconos Heroicons --><script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #1f2937 0%, #0d9488 100%); /* Fondo degradado oscuro a verde teal */
+            color: #e2e8f0; /* Color de texto suave */
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
+        }
+        .section-title-line {
+            height: 3px;
+            width: 80px;
+            background-color: #38b2ac; /* teal-400 */
+            margin-bottom: 2rem;
+        }
+        .card {
+            background-color: rgba(30, 41, 59, 0.7); /* slate-800 con transparencia */
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(71, 85, 105, 0.5); /* slate-600 con transparencia */
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+        .dot-number-premium {
+            background: linear-gradient(45deg, #38b2ac, #319795); /* teal-400 a teal-600 */
+            color: white;
+            border-radius: 9999px;
+            width: 2.25rem; /* w-9 */
+            height: 2.25rem; /* h-9 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        .dotted-line-premium {
+            border-left: 2px dotted #6ee7b7; /* teal-200 */
+            min-height: 5rem; /* Ajustar para espacio entre puntos */
+            margin-left: 1.125rem; /* Centrar con el número */
+            margin-right: 1.125rem;
+            flex-grow: 1;
+        }
+        .category-text {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600; /* semibold */
+            color: #6ee7b7; /* teal-200 */
+        }
+        .category-subtitle {
+            font-size: 0.875rem; /* text-sm */
+            color: #a7f3d0; /* teal-50 */
+        }
+        .icon-box {
+            background-color: #38b2ac; /* teal-400 */
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            display: inline-flex;
+            margin-right: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .quote-box {
+            background-color: rgba(71, 85, 105, 0.5); /* slate-600 con transparencia */
+            border-left: 4px solid #6ee7b7; /* teal-200 */
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            font-style: italic;
+            color: #a7f3d0;
+            margin-top: 1rem;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #38b2ac;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .message-box {
+            background: linear-gradient(90deg, #38b2ac, #319795); /* Degradado para mensajes clave */
+            padding: 1.75rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-align: center;
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600;
+            color: white;
+            line-height: 1.4;
+            transition: all 0.3s ease;
+        }
+        .message-box:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+        }
+
+        /* Estilos para el botón de exportar */
+        .export-pdf-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(45deg, #f0fdfa, #ccfbf1); /* teal-50 a teal-100 */
+            color: #134e4a; /* teal-900 */
+            padding: 0.75rem 1.25rem;
+            border-radius: 9999px; /* rounded-full */
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem; /* text-sm */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 50;
+        }
+        .export-pdf-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.4);
+        }
+
+        /* Ocultar el botón al imprimir */
+        @media print {
+            .export-pdf-btn {
+                display: none;
+            }
+
+            /* * ¡ESTA ES LA MAGIA! 
+             * Forzamos al navegador a imprimir todos los fondos y colores.
+             */
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                /* Aseguramos que el fondo degradado se imprima */
+                background: linear-gradient(135deg, #1f2937 0%, #0d9488 100%) !important;
+            }
+
+            /* Forzamos fondos y colores en todos los componentes clave */
+            .card, .icon-box, .quote-box, .tag, .message-box, header div[class*="bg-gradient-to-br"] {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* Quitamos sombras innecesarias en el PDF */
+            .card, .icon-box, .tag, .message-box, .export-pdf-btn, .dot-number-premium, header div[class*="bg-gradient-to-br"] {
+                box-shadow: none !important;
+            }
+            
+            /* Aseguramos que el color del texto sea el correcto (no negro) */
+            body, h1, h2, h3, h4, p, li, strong, .category-text, .quote-box, .text-gray-300, .text-gray-400 {
+                color: #ffffff !important;
+            }
+            .text-teal-200, .category-subtitle {
+                color: #a7f3d0 !important;
+            }
+            .text-teal-400, span[class*="text-teal-400"] {
+                color: #6ee7b7 !important;
+            }
+            
+            /* Evitar que las tarjetas se partan entre páginas */
+            section.card {
+                break-inside: avoid;
+            }
+
+            /* Para el PDF, es mejor apilar las tarjetas en una sola columna */
+            main.grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            header {
+                padding-bottom: 2rem !important;
+            }
+        }
+
+    </style>
+</head>
+<body class="p-8 md:p-12 lg:p-16">
+
+    <div class="max-w-7xl mx-auto space-y-20">
+
+        <!-- Header Section --><header class="flex flex-col md:flex-row justify-between items-center mb-16 gap-8">
+            <div class="text-center md:text-left">
+                <p class="text-lg text-gray-300 mb-2 font-light">Perfil del Cliente Ideal</p>
+                <h1 class="text-5xl md:text-6xl font-extrabold leading-tight text-white drop-shadow-lg">Carlos Morales</h1>
+                <h2 class="text-2xl md:text-3xl font-light text-teal-200 mt-3">El Profesional Conectado</h2>
+            </div>
+            <div class="relative w-32 h-32 md:w-40 md:h-40 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full flex items-center justify-center shadow-2xl flex-shrink-0 border-4 border-white border-opacity-30">
+                <svg class="w-20 h-20 md:w-24 md:h-24 text-white opacity-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+                </svg>
+                <div class="absolute -bottom-2 -right-2 bg-white text-teal-700 rounded-full w-10 h-10 flex items-center justify-center text-xl font-bold shadow-lg">1</div>
+            </div>
+        </header>
+
+        <!-- Main Content Grid --><main class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+            <!-- QUIÉN Section --><section class="card p-8">
+                <h3 class="text-3xl font-light mb-6 text-white">
+                    <span class="text-teal-400 font-bold">01.</span> QUIÉN
+                </h3>
+                <div class="section-title-line"></div>
+
+                <div class="flex items-start gap-4 mb-8">
+                    <div class="icon-box"><svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 18V6.75A2.25 2.25 0 019 4.5h6a2.25 2.25 0 012.25 2.25V18" /></svg></div>
+                    <div>
+                        <p class="category-text">Perfil General <span class="text-gray-400 text-sm">(Trabajo, Familia)</span></p>
+                        <ul class="list-none mt-2 text-gray-300 text-sm space-y-1">
+                            <li><strong class="text-white">Puesto:</strong> Gerente Comercial o Propietario de PYME.</li>
+                            <li><strong class="text-white">Experiencia:</strong> 15+ años, decisor experimentado.</li>
+                            <li><strong class="text-white">Familia:</strong> Casado, 2 hijos en edad escolar.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 mb-8">
+                    <div class="icon-box"><svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg></div>
+                    <div>
+                        <p class="category-text">Características Sociodemográficas <span class="text-gray-400 text-sm">(Edad, Ingresos, Ubicación)</span></p>
+                        <ul class="list-none mt-2 text-gray-300 text-sm space-y-1">
+                            <li><strong class="text-white">Género:</strong> Masculino</li>
+                            <li><strong class="text-white">Edad:</strong> 42 años</li>
+                            <li><strong class="text-white">Ingresos:</strong> C$ 50,000 - C$ 80,000+ mensuales</li>
+                            <li><strong class="text-white">Residencia:</strong> Managua (Zonas ejecutivas)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <div class="icon-box"><svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 3h16.5a.75.75 0 00.75-.75V6.75a.75.75 0 00-.75-.75H3.75a.75.75 0 00-.75.75v6.75c0 .414.336.75.75.75z" /></svg></div>
+                    <div>
+                        <p class="category-text">Descripción de la Personalidad <span class="text-gray-400 text-sm">(Trato, Comunicación)</span></p>
+                        <ul class="list-none mt-2 text-gray-300 text-sm space-y-1">
+                            <li><strong class="text-white">Personalidad:</strong> Decisor, pragmático, orientado a resultados.</li>
+                            <li><strong class="text-white">Preferencia de Trato:</strong> Eficiente y profesional.</li>
+                            <li><strong class="text-white">Comunicación:</strong> Predominantemente WhatsApp y Email.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- QUÉ Section --><section class="card p-8">
+                <h3 class="text-3xl font-light mb-6 text-white">
+                    <span class="text-teal-400 font-bold">02.</span> QUÉ
+                </h3>
+                <div class="section-title-line"></div>
+
+                <div class="flex items-start gap-4 mb-8">
+                    <div class="icon-box"><svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.25c2.26 0 4.471-.49 6.54-1.403a47.285 47.285 0 00-.491-6.347m-15.482 0A18.658 18.658 0 0112 5.25c2.648 0 5.195.69 7.465 1.98M2.25 14.472a48.81 48.81 0 002.557 5.134m15.688-4.536a48.81 48.81 0 002.557-5.134M7.5 7.5l4.5 4.5m-4.5 4.5l4.5-4.5" /></svg></div>
+                    <div>
+                        <p class="category-text">Objetivos <span class="text-gray-400 text-sm">(Primarios y Secundarios)</span></p>
+                        <ul class="list-none mt-2 text-gray-300 text-sm space-y-1">
+                            <li><strong class="text-white">Primario:</strong> 100% de conectividad para su operación comercial.</li>
+                            <li><strong class="text-white">Secundario:</strong> Predecir y optimizar costos, eliminando gastos "sorpresa".</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 mb-8">
+                    <div class="icon-box"><svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.174 3.35 1.94 3.35h14.71c1.766 0 2.806-1.85 1.94-3.35L19.5 9.75a1.125 1.125 0 00-1.94-1.658L12 12.75l-4.56-4.56a1.125 1.125 0 00-1.94 1.658L11.25 12V9" /></svg></div>
+                    <div>
+                        <p class="category-text">Retos <span class="text-gray-400 text-sm">(Primarios y Secundarios)</span></p>
+                        <ul class="list-none mt-2 text-gray-300 text-sm space-y-1">
+                            <li><strong class="text-white">Primario:</strong> Pérdida de llamadas clave por mala cobertura.</li>
+                            <li><strong class="text-white">Secundario:</strong> Costos exorbitantes e impredecibles de roaming.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <div class="icon-box"><svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L13.5 21.75a.75.75 0 01-1.653.337L7.5 14.25H3.75a.75.75 0 01-.75-.75z" /></svg></div>
+                    <div>
+                        <p class="category-text">Planes de Acción <span class="text-gray-400 text-sm">(Cómo lo resuelve él)</span></p>
+                        <ul class="list-none mt-2 text-gray-300 text-sm space-y-1">
+                            <li><strong class="text-white">Para Retos:</strong> Buscar un proveedor con cobertura sólida y roaming incluido.</li>
+                            <li><strong class="text-white">Para Objetivos:</strong> Consolidar gastos en una factura mensual fija.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- POR QUÉ Section --><section class="card p-8">
+                <h3 class="text-3xl font-light mb-6 text-white">
+                    <span class="text-teal-400 font-bold">03.</span> POR QUÉ
+                </h3>
+                <div class="section-title-line"></div>
+
+                <div class="flex items-start gap-4 mb-8">
+                    <div class="icon-box"><svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 3h16.5a.75.75 0 00.75-.75V6.75a.75.75 0 00-.75-.75H3.75a.75.75 0 00-.75.75v6.75c0 .414.336.75.75.75z" /></svg></div>
+                    <div>
+                        <p class="category-text">Comentarios <span class="text-gray-400 text-sm">(Voz del Cliente)</span></p>
+                        <div class="quote-box">
+                            <p>"No me puedo dar el lujo de que se me caiga una llamada con un cliente. Y lo de viajar... es un dolor de cabeza, el mes pasado la factura de roaming fue un absurdo."</p>
+                            <p class="mt-2">"Necesito una solución definitiva. Un plan que funcione aquí, en Guatemala y en Miami, y pagar lo mismo cada mes."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <div class="icon-box"><svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.174 3.35 1.94 3.35h14.71c1.766 0 2.806-1.85 1.94-3.35L19.5 9.75a1.125 1.125 0 00-1.94-1.658L12 12.75l-4.56-4.56a1.125 1.125 0 00-1.94 1.658L11.25 12V9" /></svg></div>
+                    <div>
+                        <p class="category-text">Áreas de Oportunidad <span class="text-gray-400 text-sm">(Objeciones de Venta)</span></p>
+                        <ul class="list-disc list-outside ml-5 mt-2 text-gray-300 text-sm space-y-1">
+                            <li><strong class="text-white">Contrato:</strong> "Los contratos de permanencia (18-24 meses) me amarran. ¿Y si el servicio no es bueno?"</li>
+                            <li><strong class="text-white">Servicio:</strong> "El 'Servicio al Cliente' para Pospago es lento y burocrático."</li>
+                            <li><strong class="text-white">Precio:</strong> "¿Realmente voy a usar todos esos Gigas? No quiero pagar de más."</li>
+                        </ul>
+                        <div class="mt-4">
+                            <span class="tag">Contrato</span>
+                            <span class="tag">Atención Cliente</span>
+                            <span class="tag">Costo</span>
+                            <span class="tag">Valor percibido</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CÓMO Section --><section class="card p-8">
+                <h3 class="text-3xl font-light mb-6 text-white">
+                    <span class="text-teal-400 font-bold">04.</span> CÓMO
+                </h3>
+                <div class="section-title-line"></div>
+
+                <div class="flex items-start gap-4 mb-8">
+                    <div class="icon-box"><svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 3h16.5a.75.75 0 00.75-.75V6.75a.75.75 0 00-.75-.75H3.75a.75.75 0 00-.75.75v6.75c0 .414.336.75.75.75z" /></svg></div>
+                    <div>
+                        <p class="category-text">Mensaje de Marketing <span class="text-gray-400 text-sm">(Promesa de Valor)</span></p>
+                        <div class="message-box mt-2">
+                            "Tu negocio no se detiene en las fronteras. Tu conexión tampoco. <br><b>Pospago Claro: Productividad sin límites con Roaming América incluido.</b>"
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <div class="icon-box"><svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.174 3.35 1.94 3.35h14.71c1.766 0 2.806-1.85 1.94-3.35L19.5 9.75a1.125 1.125 0 00-1.94-1.658L12 12.75l-4.56-4.56a1.125 1.125 0 00-1.94 1.658L11.25 12V9" /></svg></div>
+                    <div>
+                        <p class="category-text">Mensaje de Ventas <span class="text-gray-400 text-sm">(Elevator Pitch)</span></p>
+                        <div class="message-box mt-2">
+                            "Carlos, entiendo que para ti lo más importante es la fiabilidad. Este plan está diseñado para gerentes como tú. El beneficio clave es el <b>Roaming América 'Sin Fronteras'</b>: usas tu plan en EE.UU. o Centroamérica como si estuvieras aquí, sin costo extra. Es una <b>inversión fija</b> en tu productividad."
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Botón de Exportar a PDF -->
+    <button onclick="window.print()" class="export-pdf-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 inline-block mr-2 -mt-1" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm4 14a1 1 0 100-2 1 1 0 000 2zM6 7a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+        </svg>
+        Exportar a PDF
+    </button>
+
+</body>
+</html>
